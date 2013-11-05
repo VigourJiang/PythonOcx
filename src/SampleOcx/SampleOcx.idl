@@ -1,0 +1,51 @@
+// SampleOcx.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(SampleOcx.tlb)，该类型库将成为
+// SampleOcx.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(68860447-A411-47F5-882C-064FA4B45FD7), version(1.0),
+  control ]
+library SampleOcxLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CSampleOcxCtrl 的主调度接口
+	[ 
+		uuid(2181AC23-134A-449B-975B-337FC0E7550A)	
+	]
+	dispinterface _DSampleOcx
+	{
+		properties:
+		methods:
+			[id(1)] void ChangeMe(BSTR name, LONG color);
+	};
+
+	//  CSampleOcxCtrl 的事件调度接口
+
+	[ 
+		uuid(B3F7582F-B04D-4CF6-ADEC-7F37C53A83E7)	
+	]
+	dispinterface _DSampleOcxEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+			[id(1)] void NameChanged(BSTR prevValue, BSTR newValue);
+	};
+
+	//  CSampleOcxCtrl 的类信息
+	[
+		uuid(B8E76BD2-A539-4A75-9875-598717536A2D)
+	]
+	coclass SampleOcx
+	{
+		[default] dispinterface _DSampleOcx;
+		[default, source] dispinterface _DSampleOcxEvents;
+	};
+
+};
